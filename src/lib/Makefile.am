@@ -8,6 +8,7 @@ EOLIAN_FLAGS = @DEPS_EOLIAN_FLAGS@ \
 
 include $(top_srcdir)/Makefile_Eolian_Helper.am
 include $(top_srcdir)/Makefile_Eolian_Cxx_Helper.am
+include $(top_srcdir)/Makefile_Eolian_Js_Helper.am
 
 AM_CPPFLAGS = \
 -DELM_INTERNAL_API_ARGESFSDFEFC=1 \
@@ -627,6 +628,7 @@ elm_eolian_c = $(elm_eolian_files:%.eo=%.eo.c)
 elm_eolian_h = $(elm_eolian_files:%.eo=%.eo.h)
 elm_eolian_legacy_h = $(elm_eolian_files:%.eo=%.eo.legacy.h)
 elm_eolian_hh = $(elm_eolian_files:%.eo=%.eo.hh)
+elm_eolian_js_cc = $(elm_eolian_files:%.eo=%.eo.js.cc)
 
 BUILT_SOURCES = \
 	$(elm_eolian_c)	\
@@ -766,5 +768,133 @@ Elementary.hh: $(elm_eolian_hh)
 	@echo @ECHO_E@ "#endif\n\n#endif\n" >> $(top_builddir)/src/lib/Elementary.hh
 endif
 
+if HAVE_JS
+CLEANFILES += $(nodist_includecxxbindings_HEADERS)
+
+lib_LTLIBRARIES += libelementary_js.la
+
+BUILT_SOURCES += $(elm_eolian_js_cc)
+
+libelementary_js_la_SOURCES = elementary_js.cc \
+elm_access.eo.js.cc \
+elm_actionslider.eo.js.cc \
+elm_app_client.eo.js.cc \
+elm_app_client_view.eo.js.cc \
+elm_app_server.eo.js.cc \
+elm_app_server_view.eo.js.cc \
+elm_atspi_app_object.eo.js.cc \
+elm_bg.eo.js.cc \
+elm_box.eo.js.cc \
+elm_bubble.eo.js.cc \
+elm_button.eo.js.cc \
+elm_calendar.eo.js.cc \
+elm_check.eo.js.cc \
+elm_clock.eo.js.cc \
+elm_colorselector.eo.js.cc \
+elm_conformant.eo.js.cc \
+elm_container.eo.js.cc \
+elm_ctxpopup.eo.js.cc \
+elm_datetime.eo.js.cc \
+elm_dayselector.eo.js.cc \
+elm_diskselector.eo.js.cc \
+elm_entry.eo.js.cc \
+elm_fileselector.eo.js.cc \
+elm_fileselector_button.eo.js.cc \
+elm_fileselector_entry.eo.js.cc \
+elm_flip.eo.js.cc \
+elm_flipselector.eo.js.cc \
+elm_frame.eo.js.cc \
+elm_gengrid.eo.js.cc \
+elm_gengrid_pan.eo.js.cc \
+elm_genlist.eo.js.cc \
+elm_genlist_pan.eo.js.cc \
+elm_gesture_layer.eo.js.cc \
+elm_glview.eo.js.cc \
+elm_grid.eo.js.cc \
+elm_hover.eo.js.cc \
+elm_hoversel.eo.js.cc \
+elm_icon.eo.js.cc \
+elm_image.eo.js.cc \
+elm_index.eo.js.cc \
+elm_interface_atspi_accessible.eo.js.cc \
+elm_interface_atspi_action.eo.js.cc \
+elm_interface_atspi_component.eo.js.cc \
+elm_interface_atspi_editable_text.eo.js.cc \
+elm_interface_atspi_image.eo.js.cc \
+elm_interface_atspi_selection.eo.js.cc \
+elm_interface_atspi_text.eo.js.cc \
+elm_interface_atspi_value.eo.js.cc \
+elm_interface_atspi_widget.eo.js.cc \
+elm_interface_atspi_widget_action.eo.js.cc \
+elm_interface_atspi_window.eo.js.cc \
+elm_interface_fileselector.eo.js.cc \
+elm_interface_scrollable.eo.js.cc \
+elm_inwin.eo.js.cc \
+elm_label.eo.js.cc \
+elm_layout.eo.js.cc \
+elm_list.eo.js.cc \
+elm_map.eo.js.cc \
+elm_map_pan.eo.js.cc \
+elm_mapbuf.eo.js.cc \
+elm_menu.eo.js.cc \
+elm_multibuttonentry.eo.js.cc \
+elm_naviframe.eo.js.cc \
+elm_notify.eo.js.cc \
+elm_pan.eo.js.cc \
+elm_panel.eo.js.cc \
+elm_panes.eo.js.cc \
+elm_photo.eo.js.cc \
+elm_photocam.eo.js.cc \
+elm_photocam_pan.eo.js.cc \
+elm_player.eo.js.cc \
+elm_plug.eo.js.cc \
+elm_popup.eo.js.cc \
+elm_prefs.eo.js.cc \
+elm_progressbar.eo.js.cc \
+elm_radio.eo.js.cc \
+elm_route.eo.js.cc \
+elm_scroller.eo.js.cc \
+elm_segment_control.eo.js.cc \
+elm_separator.eo.js.cc \
+elm_slider.eo.js.cc \
+elm_slideshow.eo.js.cc \
+elm_spinner.eo.js.cc \
+elm_systray.eo.js.cc \
+elm_table.eo.js.cc \
+elm_thumb.eo.js.cc \
+elm_toolbar.eo.js.cc \
+elm_video.eo.js.cc \
+elm_web.eo.js.cc \
+elm_widget.eo.js.cc \
+elm_win.eo.js.cc \
+elm_widget_item.eo.js.cc \
+elm_color_item.eo.js.cc \
+elm_dayselector_item.eo.js.cc \
+elm_hoversel_item.eo.js.cc \
+elm_segment_control_item.eo.js.cc \
+elm_slideshow_item.eo.js.cc \
+elm_flipselector_item.eo.js.cc \
+elm_menu_item.eo.js.cc \
+elm_ctxpopup_item.eo.js.cc \
+elm_index_item.eo.js.cc \
+elm_multibuttonentry_item.eo.js.cc \
+elm_naviframe_item.eo.js.cc \
+elm_genlist_item.eo.js.cc \
+elm_gengrid_item.eo.js.cc \
+elm_list_item.eo.js.cc \
+elm_toolbar_item.eo.js.cc \
+elm_diskselector_item.eo.js.cc \
+elm_popup_item.eo.js.cc
+
+libelementary_js_la_CXXFLAGS = @ELEMENTARY_CFLAGS@ @ELEMENTARY_JS_CFLAGS@
+libelementary_js_la_LIBADD = \
+@ELEMENTARY_LIBS@ \
+@ELEMENTARY_JS_LIBS@ \
+libelementary.la \
+@LTLIBINTL@
+
+libelementary_js_la_LDFLAGS = @EFL_LTLIBRARY_FLAGS@
+
+endif
 
 

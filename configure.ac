@@ -36,6 +36,12 @@ AC_ARG_ENABLE([cxx-bindings],
    [want_cxx11="${enableval}"],
    [want_cxx11="no"])
 
+AC_ARG_ENABLE([js-bindings],
+   [AS_HELP_STRING([--enable-js-bindings],
+       [enable JS bindings. @<:@default=disabled@:>@])],
+   [want_js="${enableval}"],
+   [want_js="no"])
+
 # Tests
 
 AC_ARG_WITH([tests],
@@ -173,6 +179,7 @@ EFL_WITH_BIN([eolian-cxx], [eolian-cxx], [eolian_cxx])
 # Force the helper to try external eolian generators
 AM_CONDITIONAL([HAVE_EOLIAN_GEN], [true])
 AM_CONDITIONAL([HAVE_EOLIAN_CXX], [true])
+AM_CONDITIONAL([HAVE_EOLIAN_JS], [true])
 
 EFL_ENABLE_BIN([elementary-test])
 EFL_ENABLE_BIN([elementary-codegen])
@@ -266,6 +273,33 @@ else
 fi
 AM_CONDITIONAL([HAVE_CXX11], [test "x${have_cxx11}" = "xyes"])
 
+if test "x${want_js}" = "xyes"; then
+   PKG_CHECK_MODULES([ELEMENTARY_JS],
+      [
+        eolian-js >= efl_version
+        eo-js >= efl_version
+        efl-cxx >= efl_version
+        eo-cxx >= efl_version
+        eina-cxx >= efl_version
+      ],
+      [
+        requirement_elm_pc="${requirement_elm_pc} \
+          eolian-js >= efl_version \
+          eo-js >= efl_version \
+          efl-cxx >= efl_version \
+          eina-cxx >= efl_version \
+          eo-cxx >= efl_version \
+        "
+        have_js="yes"
+      ],
+      [have_js="no"]
+   )
+else
+   have_js="no"
+fi
+AM_CONDITIONAL([HAVE_JS], [test "x${have_js}" = "xyes"])
+
+EFL_WITH_BIN([eolian-js], [eolian-js], [eolian_js])
 
 MODULE_EDJE=`${PKG_CONFIG} --variable=module_arch edje`
 AC_SUBST([MODULE_EDJE])
@@ -518,6 +552,7 @@ echo "  elementary_codegen.......: ${elementary_codegen}"
 echo "  elm_prefs_cc.............: ${elm_prefs_cc}"
 echo "  eolian_gen...............: ${eolian_gen}"
 echo "  eolian_cxx...............: ${eolian_cxx}"
+echo "  eolian_js...............:  ${eolian_js}"
 echo
 echo "  Build elementary_test....: ${have_elementary_test}"
 echo "  Build elementary_codegen.: ${have_elementary_codegen}"
@@ -527,6 +562,7 @@ echo "  Examples installed.......: ${enable_install_examples}"
 echo "  Build elementary_config..: ${have_elementary_config}"
 echo "  Enable debug.............: ${want_elementary_debug}"
 echo "  Enable C++...............: ${have_cxx11}"
+echo "  Enable JavaScript........: ${have_js}"
 echo
 echo "Compilation................: make (or gmake)"
 echo "  CPPFLAGS.................: $CPPFLAGS"
