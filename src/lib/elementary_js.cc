@@ -17,6 +17,7 @@
 
 EAPI void register_elm_win(v8::Handle<v8::Object> global, v8::Isolate* isolate);
 EAPI void register_elm_bg(v8::Handle<v8::Object> global, v8::Isolate* isolate);
+EAPI void register_elm_button(v8::Handle<v8::Object> global, v8::Isolate* isolate);
 
 namespace {
 
@@ -28,12 +29,11 @@ void init(v8::Handle<v8::Object> exports)
   static char* argv[] = {"node"};
   ::elm_init(1, argv);
   
-  // ee = ecore_evas_new(NULL, 100, 100, 200, 200, NULL);
-  // ecore_evas_show(ee);
   try
     {
       register_elm_win(exports, v8::Isolate::GetCurrent());
       register_elm_bg(exports, v8::Isolate::GetCurrent());
+      register_elm_button(exports, v8::Isolate::GetCurrent());
     }
   catch(...)
     {
