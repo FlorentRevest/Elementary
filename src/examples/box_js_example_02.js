@@ -14,6 +14,10 @@ btn = new elm.Elm_Button (win);
 btn.size_set(50, 20);
 btn.text_set('elm.text', 'Botao');
 btn.visibility_set(true);
+btn.event_clicked(function()
+                  {
+                      process.stdout.write("Function called\n");
+                  });
 
 win.size_set(300, 320);
 win.visibility_set(true);
