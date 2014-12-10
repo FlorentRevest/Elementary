@@ -8,11 +8,14 @@ win.title_set('title');
 bg = new elm.Elm_Bg (win);
 bg.size_hint_weight_set(1.0, 1.0);
 win.resize_object_add(bg);
-//bg.show();
-bg.color_set(0, 0, 0, 255);
 bg.visibility_set(true);
 
-win.size_set(100, 100);
+btn = new elm.Elm_Button (win);
+btn.size_set(50, 20);
+btn.text_set('elm.text', 'Botao');
+btn.visibility_set(true);
+
+win.size_set(300, 320);
 win.visibility_set(true);
 
-//win.show();
+process.stdout.write("Going to wait now\n");
