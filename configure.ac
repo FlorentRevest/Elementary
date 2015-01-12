@@ -278,6 +278,7 @@ if test "x${want_js}" = "xyes"; then
       [
         eolian-js >= efl_version
         eo-js >= efl_version
+        eina-js >= efl_version
         efl-cxx >= efl_version
         eo-cxx >= efl_version
         eina-cxx >= efl_version
@@ -286,6 +287,7 @@ if test "x${want_js}" = "xyes"; then
         requirement_elm_pc="${requirement_elm_pc} \
           eolian-js >= efl_version \
           eo-js >= efl_version \
+          eina-js >= efl_version \
           efl-cxx >= efl_version \
           eina-cxx >= efl_version \
           eo-cxx >= efl_version \
