@@ -773,7 +773,18 @@ CLEANFILES += $(nodist_includecxxbindings_HEADERS)
 
 lib_LTLIBRARIES += libelementary_js.la
 
-BUILT_SOURCES += $(elm_eolian_js_cc)
+AM_V_CP = $(am__v_CP_@AM_V@)
+am__v_CP_ = $(am__v_CP_@AM_DEFAULT_V@)
+am__v_CP_0 = @echo "  CP  " $@;
+
+CP = cp
+
+$(top_builddir)/src/lib/elm.node: $(top_builddir)/src/lib/libelementary_js.la
+	$(AM_V_CP)$(CP) $(top_builddir)/src/lib/.libs/libelementary_js.so $(top_builddir)/src/lib/elm.node
+
+EXTRA_DIST += $(top_builddir)/src/lib/elm.node
+
+BUILT_SOURCES += $(elm_eolian_js_cc) $(top_builddir)/src/lib/elm.node
 
 libelementary_js_la_SOURCES = elementary_js.cc \
 elm_access.eo.js.cc \

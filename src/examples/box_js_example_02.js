@@ -1,6 +1,5 @@
 
-//var efl = require('../../../efl-js/build/src/lib/eolian_js/.libs/efl')
-var elm = require('../../build/src/lib/.libs/elm')
+var elm = require('elm')
 
 win = new elm.Elm_Win (null, 'name', 0);
 win.title_set('title');
