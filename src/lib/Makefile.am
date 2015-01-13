@@ -779,12 +779,12 @@ am__v_CP_0 = @echo "  CP  " $@;
 
 CP = cp
 
-$(abs_top_builddir)/src/lib/elm.node: $(abs_top_builddir)/src/lib/libelementary_js.la
-	$(AM_V_CP)$(CP) $(abs_top_builddir)/src/lib/.libs/libelementary_js.so $(abs_top_builddir)/src/lib/elm.node
+# $(abs_top_builddir)/src/lib/elm.node: $(abs_top_builddir)/src/lib/libelementary_js.la
+# 	$(AM_V_CP)$(CP) $(abs_top_builddir)/src/lib/.libs/libelementary_js.so $(abs_top_builddir)/src/lib/elm.node
 
-EXTRA_DIST += $(abs_top_builddir)/src/lib/elm.node
+# EXTRA_DIST += $(abs_top_builddir)/src/lib/elm.node
 
-BUILT_SOURCES += $(elm_eolian_js_cc) $(abs_top_builddir)/src/lib/elm.node
+BUILT_SOURCES += $(elm_eolian_js_cc) #$(abs_top_builddir)/src/lib/elm.node
 
 libelementary_js_la_SOURCES = elementary_js.cc \
 elm_access.eo.js.cc \
