@@ -784,7 +784,7 @@ $(abs_top_builddir)/src/lib/elm.node: $(abs_top_builddir)/src/lib/libelementary_
 
 EXTRA_DIST += $(abs_top_builddir)/src/lib/elm.node
 
-BUILT_SOURCES += $(elm_eolian_js_cc) $(top_builddir)/src/lib/elm.node
+BUILT_SOURCES += $(elm_eolian_js_cc) $(abs_top_builddir)/src/lib/elm.node
 
 libelementary_js_la_SOURCES = elementary_js.cc \
 elm_access.eo.js.cc \
