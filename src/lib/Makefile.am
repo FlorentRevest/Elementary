@@ -383,7 +383,10 @@ elm_web_legacy.h \
 elm_win.h \
 elm_win_common.h \
 elm_win_eo.h \
-elm_win_legacy.h
+elm_win_legacy.h \
+elc_settingspane.h \
+elc_settingspane_eo.h \
+elc_settingspane_legacy.h
 includesubdir = $(includedir)/elementary-@VMAJ@/
 
 libelementary_la_SOURCES = \
@@ -498,7 +501,8 @@ elm_win.c \
 els_box.c \
 els_cursor.c \
 els_tooltip.c \
-elu_ews_wm.c
+elu_ews_wm.c \
+elc_settingspane.c
 
 libelementary_la_CFLAGS = @ELEMENTARY_CFLAGS@
 libelementary_la_LIBADD = \
@@ -621,7 +625,9 @@ elm_gengrid_item.eo \
 elm_list_item.eo \
 elm_toolbar_item.eo \
 elm_diskselector_item.eo \
-elm_popup_item.eo
+elm_popup_item.eo \
+elm_settingspane.eo \
+elm_settingspane_item.eo
 
 elm_eolian_c = $(elm_eolian_files:%.eo=%.eo.c)
 elm_eolian_h = $(elm_eolian_files:%.eo=%.eo.h)
@@ -750,7 +756,9 @@ elementaryeolianfiles_DATA = \
 	     elm_list_item.eo \
 	     elm_toolbar_item.eo \
 	     elm_diskselector_item.eo \
-	     elm_popup_item.eo
+	     elm_popup_item.eo \
+	     elm_settingspane.eo \
+	     elm_settingspane_item.eo
 
 EXTRA_DIST += ${elementaryeolianfiles_DATA}
 
