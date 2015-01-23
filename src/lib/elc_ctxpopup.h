@@ -54,6 +54,10 @@
  * @li @ref elm_object_item_part_content_get
  * @li @ref elm_object_item_signal_emit
  *
+ * Supported Styles:
+ * @li clean - No arrows at the borders of the ctxpopup
+ * @li default - The default ctxpopup
+ *
  * @ref tutorial_ctxpopup shows the usage of a good deal of the API.
  * @{
  */
