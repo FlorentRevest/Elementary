@@ -516,12 +516,6 @@ test_config(void *data, Evas_Object *obj, void *event_info EINA_UNUSED)
 
    if (pd && !obj) //obj is NULL when called by _bt_win_add but not when user clicks this test
      {
-        if (pd->available_profiles[0])
-          elm_win_available_profiles_set(win,
-                                         pd->available_profiles,
-                                         pd->count);
-        if (pd->profile)
-          elm_win_profile_set(win, pd->profile);
 
         _profile_update(win);
      }
