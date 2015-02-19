@@ -743,8 +743,8 @@ _elm_image_smart_download_done(void *data, Elm_Url *url EINA_UNUSED, Eina_Binbuf
    sd->remote_data = eina_binbuf_string_steal(download);
    f = eina_file_virtualize(_elm_url_get(url),
                             sd->remote_data, length,
-                            EINA_FALSE);
-   _elm_image_smart_internal_file_set(obj, sd, _elm_url_get(url), f, sd->key, &ret);
+                            EINA_TRUE);
+   evas_object_image_mmap_set(sd->img, f, sd->key);
    eina_file_close(f);
 
    sd->remote = NULL;
